@@ -5,6 +5,14 @@ class Blog(models.Model):
     date = models.DateTimeField()
     body = models.TextField()
     image = models.ImageField(upload_to="images/")
-    summary = models.CharField(max_length=100)
+    
+    def summary(self):
+        return self.body[:100]
+
+    def date_pretty(self):
+        return self.date.strftime('%b %e %Y')
+
+    def __str__(self):
+        return self.title
 
 

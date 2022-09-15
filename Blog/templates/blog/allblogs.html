@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.101.0">
-    <title>ISWARYA</title>
+    <title>Ishu's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
 
@@ -102,7 +102,7 @@
             <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+            <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
           </li>
         </ul>
       </div>
@@ -111,45 +111,23 @@
 </header>
 
 <main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi,I am Iswarya.</h1>
-        <p class="lead text-muted">Hey,my name is Iswarya and I like to make Django websites.</p>
-        <p>
-          <a href="mailto:jiiva25292gmail.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
-        <p>
-          <img height="300" src="{% static 'image.jpg' %}" />
-        </p>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
     <div class="container">
+        <h1 class="text-center pt-3">Welcome to Ishu's Blog</h1>
+        <br />
+        <br />
+        <h2>Latest Posts</h2>
+        <hr />
+        {% for blog in blogs.all %}
+           <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+            {{ blog.date_pretty }}
+            <br />
+            <img class="img-fluid" height=200 width=200 src="{{ blog.image.url }}" />
+            <br />
+            <p>{{ blog.summary }}</p>
+            <br />
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for job in jobs.all %}
-        <div class="col">
-          <div class="card shadow-sm">
-          <img class="card-img-top" src="{{ job.image.url }}" />
-
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="col">
-        </div>
-      </div>
+        {% endfor %}
     </div>
-  </div>
 
 </main>
 
